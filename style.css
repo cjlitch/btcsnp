@@ -1,0 +1,107 @@
+body {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+.bidask {
+	font-family: 'Maven Pro', Arial;
+	font-size: 3.125rem;
+	text-align: center;
+	color: #333;
+	width: 4.0em;
+	display: inline-block;
+	border-radius: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-color: #eee;
+	border-width: 2px;
+	border-style: solid;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.bidaskLabel {
+	color: #333;
+	width: 2.5em;
+	display: inline-block;
+	font-size: 3.125rem;
+	font-family: 'Maven Pro', Arial;
+}
+
+.nav {
+	height: 50px;
+	background-color: #eee;
+	width: 100%;
+	margin-bottom: 20px;
+	margin-top: 0;
+	text-align: center;
+	padding-top: 7px;
+}
+
+h3 {
+	margin-top: 0;
+	font-family: 'Maven Pro', Arial;
+	font-size: 30px;
+	font-weight: normal;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+.container {
+	width: 100%;
+	max-width: 25.0em;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 60px;
+	font-family: 'Maven Pro', Arial;
+	text-align: center;
+}
+
+.exchanges > li {
+	color: #4D94FF;
+	display: inline-block;
+	list-style: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 100%;
+	width: 50%;
+	margin: 0;
+	font-size: 20px;
+	padding-left: 0;
+	padding-right: 0;
+	cursor: pointer;
+}
+
+.exchanges > li:hover {
+	background-color: #4D94FF;
+	color: white;
+}
+
+.exchanges > li:last-of-type {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px; 
+}
+
+.exchanges > li:first-of-type {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px; 
+}
+
+.active {
+	background-color: #0052CC;
+	color: white !important;
+}
+
+.exchanges {
+	padding-left: 0;
+	padding-right: 0;
+	border: 1px solid #4D94FF;
+	border-radius: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+@media (max-width: 600px) {
+
+}

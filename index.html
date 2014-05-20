@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Bitcoin Snapshot</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+	<link href ="style.css" rel="stylesheet" type="text/css"></link>
+	<link rel="icon" type="image/ico" href="favicon.ico">
+</head>
+
+<body>
+
+	<div class="nav">
+		<h3>Bitcoin Snapshot</h3>
+	</div>
+
+
+	<div id="Content">
+		<div class="bidaskLabel">bid:</div>
+		<div class="bidask" id="bid">...</div>
+		<br>
+		<div class="bidaskLabel">ask:</div>
+		<div class="bidask" id="ask">...</div>
+	</div>
+
+
+	<div class="container">
+		<h3>Exchanges</h3>
+		<ul class="exchanges"><li class="active">Bitstamp</li><li>Coinsetter</li>
+		</ul>
+	</div>
+
+	<script>
+
+	window.onload = function() {
+		updateBitcoin();
+		window.setInterval(updateBitcoin, 2000);
+	}
+
+	var whichExchange = "Bitstamp.php";
+	var compare = false;
+
+	function updateBitcoin(compare) {		
+
+		var Ajax = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+	 
+		Ajax.onreadystatechange = function(){
+		    if (Ajax.readyState == 4 && Ajax.status == 200)
+		    {
+
+		    	var lastBid = $('#bid').html();
+		    	var lastAsk = $('#ask').html();
+		    
+		        var Data = JSON.parse(Ajax.responseText);
+		        Data = Data[0];
+
+		        $('#bid').html(Data.bid.toFixed(2));
+		        $('#ask').html(Data.ask.toFixed(2));
+
+		        var thisBid = Data.bid;
+		        var thisAsk = Data.ask;
+
+		        if(compare) {
+		        	if(thisBid < lastBid) {
+						$("#bid").css({"border-color":"#DB4D4D"});
+					} else if (thisBid > lastBid) {
+						$("#bid").css({"border-color":"#4DB870"});
+					}
+
+					if(thisAsk < lastAsk) {
+						$("#ask").css({"border-color":"#DB4D4D"});
+					} else if (thisAsk > lastAsk) {
+						$("#ask").css({"border-color":"#4DB870"});
+					}
+		        }
+		    }
+		}
+
+		compare = true;
+		
+		Ajax.open("GET", whichExchange, true);
+		Ajax.send();
+	}
+
+
+	$('li').click(function() {
+		$('li').removeClass('active');
+		$(this).addClass('active');
+
+		whichExchange = $(this).html() + ".php";
+		$('.bidask').html("...");
+
+		$("#ask").css({"border-color":"#EEE"});
+		$("#bid").css({"border-color":"#EEE"});
+		
+		compare = false;
+		updateBitcoin();
+	});
+
+
+</script>
+
+</body>
+
+
+
+</html>
+
